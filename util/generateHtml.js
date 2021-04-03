@@ -1,5 +1,7 @@
 function generateEmployee(data) {
-    if(data.name = )
+    if(data.name === "manager") {
+        
+    }
 };
 
 function generateHtml(data) {

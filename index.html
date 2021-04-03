@@ -12,18 +12,35 @@
 </head>
 
 <body>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">${data.manager.name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${data.role}</h6>
-            <div class="card-text">
-                <h5>ID: ${data.manager.role} </h5>
+    <div class="container">
+        <div class="bg-dark card" style="width: 15rem;">
+            <h5 class="text-light card-title">${data.manager.name}</h5>
+            <h6 class="text-light card-subtitle mb-2 text-muted">${data.manager.role}</h6>
+            <div class="card-body">
+                <div class="bg-light card-text">
+                    <h5>ID: ${data.manager.id} </h5>
+                </div>
+                <div class="bg-light card-text">
+                    <h5>Email: ${data.manager.email} </h5> 
+                </div>
+                <div class="bg-light card-text">
+                    <h5>Office number: ${data.manager.officeNumber} </h5>
+                </div>
             </div>
-            <div class="card-text">
-                <h5>Email: </h5> <a href="#">${data.manager.email}</a>
-            </div>
-            <div class="card-text">
-                <h5>Office number: ${data.manager.officeNumber} </h5>
+        </div>
+        <div class="bg-dark card" style="width: 15rem;">
+            <h5 class="text-light card-title">${data.engineer.name}</h5>
+            <h6 class="text-light card-subtitle mb-2 text-muted">${data.engineer.role}</h6>
+            <div class="card-body">
+                <div class="bg-light card-text">
+                    <h5>ID: ${data.engineer.id} </h5>
+                </div>
+                <div class="bg-light card-text">
+                    <h5>Email: ${data.engineer.email} </h5> 
+                </div>
+                <div class="bg-light card-text">
+                    <h5>Office number: ${data.engineer.github} </h5>
+                </div>
             </div>
         </div>
     </div>
