@@ -4,35 +4,7 @@ const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 const generateHtml = require("./util/generateHtml");
 
-let team = [
-    {
-        manager: {
-            name: " ",
-            id: " ",
-            email: " ",
-            officeNumber: " ",
-            role: "Manager"
-        }
-    },
-    {
-        engineer: {
-            name: " ",
-            id: " ",
-            email: " ",
-            officeNumber: " ",
-            role: "Engineer"
-        }
-    },
-    {
-        intern: {
-            name: " ",
-            id: " ",
-            email: " ",
-            officeNumber: " ",
-            role: "Intern"
-        }
-    },
-];
+let team = [];
 
 const managerQuestions = [
     {
@@ -134,60 +106,57 @@ function whatToDoWhenWeDecideToHaveANewEmployee(newMember) {
             inquirer.prompt(engineerQuestions)
             .then (async answers => {
                 let engineer = new Engineer(answers);
-                team[1].engineer.name = answers.name;
-                team[1].engineer.id = answers.id;
-                team[1].engineer.email = answers.email;
-                team[1].engineer.github = answers.github;
-
+                engineer.name = answers.name;
+                engineer.id = answers.id;
+                engineer.email = answers.email;
+                engineer.github = answers.github;
+                team.push(engineer);
                 const response = await toDecideWhetherToAddNewEmployee();
+                whatToDoWhenWeveMadeADecision(response);
 
-                if(response.newMember !== "Finish building my team"){
-                    whatToDoWhenWeDecideToHaveANewEmployee(response.newMember);
-                } else {
-                    console.log("We're done.");
-                }
             });
             break;
         case "Intern": 
             inquirer.prompt(internQuestions)
             .then(async answers => {
                 let intern = new Intern(answers);
-                team[2].intern.name = answers.name;
-                team[2].intern.id = answers.id;
-                team[2].intern.email = answers.email;              
-                team[2].intern.school = answers.school;
-
+                intern.name = answers.name;
+                intern.id = answers.id;
+                intern.email = answers.email;              
+                intern.school = answers.school;
+                team.push(intern);
                 const response = await toDecideWhetherToAddNewEmployee();
+                whatToDoWhenWeveMadeADecision(response);
 
-                if(response.newMember !== "Finish building my team"){
-                    whatToDoWhenWeDecideToHaveANewEmployee(response.newMember);
-                } else {
-                    console.log("We're done.");
-                }
             });
             break;
         default:
             break;
         }
 }
+
+function whatToDoWhenWeveMadeADecision(response) {
+    if(response.newMember !== "Finish building my team"){
+        whatToDoWhenWeDecideToHaveANewEmployee(response.newMember);
+    } else {
+        console.log("We're done.", team);
+        
+    }
+}
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(managerQuestions)
         .then( async answers => {
             let manager = new Manager(answers);
-            team[0].manager.name = answers.name;
-            team[0].manager.id = answers.id;
-            team[0].manager.email = answers.email;
-            team[0].manager.officeNumber = answers.officeNumber;
+            manager.name = answers.name;
+            manager.id = answers.id;
+            manager.email = answers.email;
+            manager.officeNumber = answers.officeNumber;
             console.log(team[0]);
+            team.push(manager);
             const response = await toDecideWhetherToAddNewEmployee();
             console.log(response);
-            if(response.newMember !== "Finish building my team"){
-                whatToDoWhenWeDecideToHaveANewEmployee(response.newMember);
-            } else {
-                console.log("We're done.");
-            }
-
+            whatToDoWhenWeveMadeADecision(response);
         });
     };
 
