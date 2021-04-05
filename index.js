@@ -1,8 +1,9 @@
 const inquirer = require("inquirer");
+const fs = require('fs');
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
-const generateHtml = require("./util/generateHtml");
+let generateHtml = require("./util/generateHtml");
 
 let team = [];
 
@@ -140,7 +141,7 @@ function whatToDoWhenWeveMadeADecision(response) {
         whatToDoWhenWeDecideToHaveANewEmployee(response.newMember);
     } else {
         console.log("We're done.", team);
-        generateHtml(team);
+        writeToFile("index.html", response);
     }
 }
 // TODO: Create a function to initialize app
@@ -152,10 +153,8 @@ function init() {
             manager.id = answers.id;
             manager.email = answers.email;
             manager.officeNumber = answers.officeNumber;
-            console.log(team[0]);
             team.push(manager);
             const response = await toDecideWhetherToAddNewEmployee();
-            console.log(response);
             whatToDoWhenWeveMadeADecision(response);
         });
     };
