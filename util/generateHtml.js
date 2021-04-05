@@ -6,7 +6,7 @@ function generateEmployee(data) {
 
 function employeeCards(arrayOfEmployees) {
     let result = `` 
-    for(i =  )
+    for(let emp of arrayOfEmployees)
 //     <div class="bg-dark card" style="width: 15rem;">
 //     <h5 class="text-light card-title">${data.manager.name}</h5>
 //     <h6 class="text-light card-subtitle mb-2 text-muted">${data.manager.role}</h6>

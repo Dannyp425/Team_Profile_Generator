@@ -140,7 +140,7 @@ function whatToDoWhenWeveMadeADecision(response) {
         whatToDoWhenWeDecideToHaveANewEmployee(response.newMember);
     } else {
         console.log("We're done.", team);
-        
+        generateHtml(team);
     }
 }
 // TODO: Create a function to initialize app
